@@ -37,6 +37,24 @@
       </el-tab-pane>
     </el-tabs>
   </div>
+  <el-divider />
+  <el-button style="width: 100%; margin-top: 40px"
+    >我是动态组件下面的第二个demo attribute01</el-button
+  >
+  <el-divider />
+  <!-- prop 并使用ts进行接收参数 -->
+  <div>
+    <attribute01
+      :data-prop="inputData"
+      @handlerAttributeCount="handerAttriClick"
+    >
+      <slot>
+        <el-button
+          >通过调用子组件的方法获取第 {{ attrCount }}次点击事件</el-button
+        >
+      </slot>
+    </attribute01>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -45,6 +63,13 @@ import BaseInput from "@/components/BaseInput.vue";
 import Attribute01 from "@/components/Attribute01.vue";
 import Attribute02 from "@/components/Attribute02.vue";
 import { reactive, computed, ref, watch } from "vue";
+// *****************************************************************************
+let attrCount = ref(0);
+const handerAttriClick = (val: number) => {
+  attrCount.value = val;
+  console.log(val);
+};
+// *****************************************************************************
 const currentTab = ref("BaseInput");
 let BaseList = { BaseInput, Attribute01, Attribute02 };
 const state = reactive({
