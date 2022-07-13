@@ -1,8 +1,8 @@
 <template>
   <div>
     <span> {{ count }}</span>
+    设置防抖
     <button @click="increment">+</button>
-    <span>{{ count }}</span>
     {{ word }}
     <input v-model="testScanf" />
     <hr />
